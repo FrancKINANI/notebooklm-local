@@ -7,10 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: astral-sh/setup-uv@v7
         with:
           python-version: "3.11"
+          enable-cache: true
       - run: uv pip compile requirements-dev.in -o requirements-dev.txt
       - run: pip install -r requirements-dev.txt
       - run: ruff check src/
-      - run: pytest tests/ -v
+      - run: pytest tests/ -v   
