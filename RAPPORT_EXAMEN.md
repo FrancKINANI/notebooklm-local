@@ -28,5 +28,4 @@ L'originalité du projet réside dans son intégration MLOps pour garantir la qu
 LocalNotebook démontre qu'il est possible de construire un système de NLP complexe, performant et auditable sans dépendre d'API cloud tierces. L'utilisation d'outils comme `uv` pour la gestion des dépendances et `Docker` pour l'orchestration souligne une approche logicielle rigoureuse, prête pour un déploiement en production.
 
 ---
-**Auteur** : Franck
 **Outils Clés** : Python, FastAPI, Streamlit, Ollama, ChromaDB, DVC, Ragas, MLflow.
