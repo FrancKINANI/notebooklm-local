@@ -1,0 +1,6 @@
+[core]
+    no_scm = True
+    remote = storage
+['remote "storage"']
+    url = gdrive://1s7ztDL9VFAOxQZksJXwx-9wNkDrjYDDX
+    gdrive_service_account_json_file_path = ../client_secret_380091632000-d3hr53a8bu9i9bm0ip2s7vc0fektsr4u.apps.googleusercontent.com.json
