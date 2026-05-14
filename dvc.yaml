@@ -1,0 +1,38 @@
+stages:
+  ingest:
+    cmd: python scripts/ingest.py
+    deps:
+      - data/raw
+      - src/ingestion/
+    params:
+      - configs/config.yaml:
+          - ingestion
+    outs:
+      - data/processed
+
+  embed:
+    cmd: python -c "from src.pipeline.rag import build_index; build_index()"
+    deps:
+      - data/processed
+      - src/embeddings/
+    params:
+      - configs/config.yaml:
+          - embeddings
+          - vectorstore
+    outs:
+      - chroma_db
+
+  evaluate:
+    cmd: python scripts/evaluate.py
+    deps:
+      - data/eval
+      - src/evaluation/
+      - chroma_db
+    params:
+      - configs/config.yaml:
+          - retrieval
+          - generation
+      - configs/models.yaml
+    metrics:
+      - metrics/ragas_results.json:
+          cache: false

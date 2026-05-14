@@ -1,0 +1,31 @@
+# Core NLP
+langchain
+langchain-community
+unstructured[pdf,html]
+sentence-transformers
+chromadb
+
+# LLM
+ollama
+
+# Reranking
+torch
+transformers
+
+# API
+fastapi
+uvicorn[standard]
+pydantic
+
+# UI
+streamlit
+
+# MLOps
+mlflow
+dvc
+ragas
+
+# Utils
+python-dotenv
+pyyaml
+tqdm

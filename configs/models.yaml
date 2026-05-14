@@ -1,0 +1,15 @@
+# Model registry for experiment comparison
+models:
+  lfm2.5:
+    name: "hf.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF"
+    provider: ollama
+    architecture: hybrid_ssm
+    params_b: 1.2
+    ram_gb: 2
+
+  llama3.1:
+    name: "llama3.1:8b"
+    provider: ollama
+    architecture: transformer_gqa
+    params_b: 8
+    ram_gb: 6

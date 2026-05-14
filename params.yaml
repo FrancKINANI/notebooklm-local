@@ -1,0 +1,5 @@
+# Override config.yaml values for DVC experiments
+chunk_size: 512
+top_k: 5
+reranking: true
+model: lfm2.5

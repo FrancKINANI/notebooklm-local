@@ -1,0 +1,24 @@
+# Global RAG configuration
+ingestion:
+  chunk_size: 512
+  chunk_overlap: 64
+  chunking_strategy: recursive   # recursive | semantic
+
+embeddings:
+  model: "intfloat/multilingual-e5-small"
+  batch_size: 32
+
+retrieval:
+  top_k: 5
+  reranking: true
+  reranker_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
+
+vectorstore:
+  persist_directory: "./chroma_db"
+  collection_name: "localnotebook"
+
+generation:
+  temperature: 0.1
+  max_tokens: 512
+  top_k: 50
+  repeat_penalty: 1.05
