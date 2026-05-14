@@ -240,14 +240,3 @@ Each RAG run logs to MLflow:
 - `latency_ms`, `tokens_per_second`
 
 ---
-
-## 🗺️ Roadmap
-
-- [x] Project architecture & structure
-- [ ] Phase 1: Core RAG pipeline (ingestion → embedding → retrieval → generation)
-- [ ] Phase 2: Reranking + prompt optimization
-- [ ] Phase 3: MLflow tracking + DVC pipeline + RAGAS evaluation
-- [ ] Phase 4: FastAPI + Streamlit + Docker Compose
-- [ ] Phase 5: Model comparison report (LFM2.5 vs Llama 3.1 8B)
-
----
