@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Qu'est-ce que le RAG (Retrieval-Augmented Generation) ?",
+    "ground_truth": "Le RAG est une technique qui combine la recherche d'information pertinente dans une base de connaissances avec la génération de texte par un LLM, permettant des réponses plus précises et ancrées dans les sources.",
+    "contexts": []
+  },
+  {
+    "question": "Quelle est la différence entre un modèle Transformer et un modèle SSM hybride ?",
+    "ground_truth": "Un Transformer utilise des mécanismes d'attention pour traiter les séquences en parallèle, tandis qu'un modèle SSM (State Space Model) hybride combine des couches SSM avec des couches d'attention pour un meilleur compromis entre performance et efficacité mémoire.",
+    "contexts": []
+  },
+  {
+    "question": "Comment fonctionne le reranking dans un pipeline RAG ?",
+    "ground_truth": "Le reranking utilise un cross-encoder pour re-scorer les documents candidats récupérés par la recherche sémantique, en évaluant conjointement la paire (question, passage) pour améliorer la précision du classement.",
+    "contexts": []
+  },
+  {
+    "question": "Quels sont les métriques RAGAS utilisées pour évaluer un système RAG ?",
+    "ground_truth": "Les principales métriques RAGAS sont : Faithfulness (fidélité aux sources), Answer Relevancy (pertinence de la réponse), Context Precision (précision du contexte récupéré), et Context Recall (rappel du contexte pertinent).",
+    "contexts": []
+  },
+  {
+    "question": "Qu'est-ce que ChromaDB ?",
+    "ground_truth": "ChromaDB est une base de données vectorielle open-source qui permet de stocker et rechercher des embeddings de manière persistante, avec support pour la recherche par similarité cosinus et le filtrage par métadonnées.",
+    "contexts": []
+  }
+]

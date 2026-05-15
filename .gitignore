@@ -9,8 +9,13 @@ data/raw/
 data/processed/
 chroma_db/
 
+# DVC internals
+.dvc/cache/
+.dvc/tmp/
+
 # MLflow
 mlflow/
+mlflow_data/
 
 # Env
 .env
