@@ -12,6 +12,7 @@ chroma_db/
 # DVC internals
 .dvc/cache/
 .dvc/tmp/
+.dvc/config.local
 
 # MLflow
 mlflow/
