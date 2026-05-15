@@ -23,9 +23,10 @@ L'originalité du projet réside dans son intégration MLOps pour garantir la qu
 *   **Évaluation de Session** : Un mécanisme de clôture de session permet de fusionner les métriques techniques et les retours humains dans un rapport de session consolidé.
 *   **Expérimentation (MLflow)** : Suivi centralisé des expériences. Une expérience dédiée `localnotebook-rag-sessions` compare la performance technique (RAGAS) avec la perception humaine (User Satisfaction) pour chaque modèle.
 *   **Versionnement (DVC)** : Les données sont versionnées et synchronisées sur un stockage distant (**Google Drive**) de manière sécurisée (secrets locaux via `.dvc/config.local`).
+*   **Qualité du Code (Ruff)** : L'utilisation de **Ruff** (linter haute performance écrit en Rust) garantit une base de code propre et sans erreurs (imports inutilisés, variables non définies), validée automatiquement via GitHub Actions à chaque modification.
 
 ## 4. Conclusion
 LocalNotebook démontre qu'il est possible de construire un système de NLP complexe, performant et auditable sans dépendre d'API cloud tierces. L'utilisation d'outils comme `uv` pour la gestion des dépendances et `Docker` pour l'orchestration souligne une approche logicielle rigoureuse, prête pour un déploiement en production.
 
 ---
-**Outils Clés** : Python, FastAPI, Streamlit, Ollama, ChromaDB, DVC, Ragas, MLflow.
+**Outils Clés** : Python, FastAPI, Streamlit, Ollama, ChromaDB, DVC, Ragas, MLflow, Ruff.
