@@ -162,7 +162,7 @@ with st.sidebar:
         "🤖 Model",
         options=["llama3.1", "lfm2.5"],
         format_func=lambda x: {
-            "llama3.1": "Llama 3.1 8B (Transformer)",
+            "llama3:8b": "llama3:8b (Transformer)",
             "lfm2.5": "LFM 2.5 1.2B (Hybrid SSM)",
         }[x],
     )

@@ -23,7 +23,7 @@ Le RAG repose sur un principe simple : au lieu de demander au LLM de générer u
 
 ### 2.2 Architectures des LLMs comparés
 Ce projet compare deux approches architecturales :
-*   **Transformer classique (Llama 3.1 8B)** : Utilise le mécanisme d'attention (GQA). Bien que performant, sa complexité quadratique limite parfois son efficacité sur les longs contextes.
+*   **Transformer classique (llama3:8b)** : Utilise le mécanisme d'attention (GQA). Bien que performant, sa complexité quadratique limite parfois son efficacité sur les longs contextes.
 *   **Modèles hybrides SSM (LFM 2.5 1.2B)** : Liquid Foundation Models. Ils utilisent des State Space Models pour traiter les séquences avec une complexité linéaire, offrant un excellent rapport performance/consommation mémoire, idéal pour le local.
 
 ### 2.3 Embeddings et recherche sémantique

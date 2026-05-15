@@ -35,7 +35,7 @@
 
 | Layer            | Technology                              | Role                                      |
 |------------------|-----------------------------------------|-------------------------------------------|
-| **LLM**          | Ollama + LFM2.5-1.2B / Llama 3.1 8B   | Local generation, no cloud dependency     |
+| **LLM**          | Ollama + LFM2.5-1.2B / llama3:8b   | Local generation, no cloud dependency     |
 | **Embeddings**   | `sentence-transformers` (multilingual-e5) | Semantic vector representation           |
 | **Vector Store** | ChromaDB                                | Persistent local similarity search        |
 | **Reranking**    | `cross-encoder/ms-marco-MiniLM`         | Precision improvement on top-k results    |
@@ -56,7 +56,7 @@ A core objective of this project is the **comparative evaluation** of two archit
 | Model             | Architecture       | Params | RAM Usage | Notes                          |
 |-------------------|--------------------|--------|-----------|-------------------------------|
 | **LFM2.5-1.2B**  | Hybrid SSM+Attn    | 1.2B   | ~2 GB     | Edge-optimized, non-Transformer |
-| **Llama 3.1 8B** | Transformer (GQA)  | 8B     | ~6 GB     | General-purpose baseline       |
+| **llama3:8b** | Transformer (GQA)  | 8B     | ~6 GB     | General-purpose baseline       |
 
 Both models are evaluated on the same RAGAS metrics and tracked in MLflow for reproducible comparison.
 
