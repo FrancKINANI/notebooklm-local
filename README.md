@@ -170,19 +170,20 @@ ollama pull hf.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF
 ollama pull llama3.1:8b
 ```
 
-### 3. Start the stack
+### 3. Start the stack (Local)
 
 ```bash
-docker-compose up -d
-# OR without Docker:
-make install && make up
+# Easy local run (FastAPI + Streamlit + MLflow)
+./scripts/run_local.sh
 ```
 
-### 4. Ingest your first source
+### 4. Ingest and Chat
 
-```bash
-python scripts/ingest.py --source data/raw/my_document.pdf --model lfm2.5
-```
+1. Open Streamlit: [http://localhost:8501](http://localhost:8501)
+2. Use the **Ingest** button in the sidebar.
+3. Chat with your documents.
+4. Rate answers with 👍/👎 to collect human feedback.
+5. Click **End & Evaluate** to trigger RAGAS and sync everything to MLflow.
 
 ### 5. Access the interfaces
 

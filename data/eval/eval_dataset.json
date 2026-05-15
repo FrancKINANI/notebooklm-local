@@ -1,18 +1,38 @@
 [
   {
     "question": "Qu'est-ce que le RAG (Retrieval-Augmented Generation) ?",
-    "ground_truth": "Le RAG est une technique qui combine la recherche d'information pertinente dans une base de connaissances avec la génération de texte par un LLM, permettant des réponses plus précises et ancrées dans les sources.",
-    "contexts": []
+    "ground_truth": "Le RAG est une technique qui connecte un LLM à des sources de données externes et privées. Le modèle recherche des informations pertinentes avant de générer une réponse, ce qui réduit les hallucinations et permet d'accéder à des données récentes.",
+    "contexts": [
+      "Le RAG est une technique qui permet de connecter un modèle de langage (LLM) à des sources de données externes et privées. Au lieu de se fier uniquement à sa mémoire d'entraînement, le modèle recherche des informations pertinentes dans une base de documents avant de générer une réponse."
+    ]
   },
   {
-    "question": "Quelle est la différence entre un modèle Transformer et un modèle SSM hybride ?",
-    "ground_truth": "Un Transformer utilise des mécanismes d'attention pour traiter les séquences en parallèle, tandis qu'un modèle SSM (State Space Model) hybride combine des couches SSM avec des couches d'attention pour un meilleur compromis entre performance et efficacité mémoire.",
-    "contexts": []
+    "question": "Quels sont les avantages concrets du RAG cités dans le document ?",
+    "ground_truth": "Les avantages du RAG incluent la réduction des hallucinations, l'accès à des données récentes ou privées, et la possibilité de citer les sources.",
+    "contexts": [
+      "Avantages du RAG : Réduction des hallucinations. Accès à des données récentes ou privées. Citations des sources possibles."
+    ]
   },
   {
-    "question": "Comment fonctionne le reranking dans un pipeline RAG ?",
-    "ground_truth": "Le reranking utilise un cross-encoder pour re-scorer les documents candidats récupérés par la recherche sémantique, en évaluant conjointement la paire (question, passage) pour améliorer la précision du classement.",
-    "contexts": []
+    "question": "C'est quoi un modèle Liquid Foundation Model (LFM) ?",
+    "ground_truth": "Les LFMs sont une classe de modèles d'IA basés sur des systèmes dynamiques au lieu des Transformers classiques. Ils utilisent des State Space Models (SSM) pour traiter les séquences de manière plus efficace.",
+    "contexts": [
+      "Liquid AI a introduit les Liquid Foundation Models (LFM), une nouvelle classe de modèles d'IA basés sur des systèmes dynamiques. Contrairement aux Transformers classiques qui utilisent l'attention, les LFMs utilisent des approches de type State Space Models (SSM) pour traiter les séquences."
+    ]
+  },
+  {
+    "question": "Pourquoi les modèles LFM sont-ils idéaux pour le déploiement local ?",
+    "ground_truth": "Ils sont idéaux car ils offrent une performance supérieure par paramètre et une consommation mémoire réduite par rapport aux modèles classiques.",
+    "contexts": [
+      "Points clés : Performance supérieure par paramètre. Consommation mémoire réduite. Idéal pour le déploiement sur des serveurs locaux ou des appareils mobiles."
+    ]
+  },
+  {
+    "question": "Quelle est la principale différence technique entre LFM et Transformers ?",
+    "ground_truth": "La différence principale est que les Transformers utilisent l'attention tandis que les LFMs utilisent des State Space Models (SSM).",
+    "contexts": [
+      "Contrairement aux Transformers classiques qui utilisent l'attention, les LFMs utilisent des approches de type State Space Models (SSM) pour traiter les séquences."
+    ]
   },
   {
     "question": "Quels sont les métriques RAGAS utilisées pour évaluer un système RAG ?",
@@ -21,7 +41,7 @@
   },
   {
     "question": "Qu'est-ce que ChromaDB ?",
-    "ground_truth": "ChromaDB est une base de données vectorielle open-source qui permet de stocker et rechercher des embeddings de manière persistante, avec support pour la recherche par similarité cosinus et le filtrage par métadonnées.",
+    "ground_truth": "ChromaDB est une base de données vectorielle open-source qui permet de stocker et rechercher des embeddings de manière persistante.",
     "contexts": []
   }
 ]

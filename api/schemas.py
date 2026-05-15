@@ -30,6 +30,22 @@ class IngestRequest(BaseModel):
     skip_index: bool = Field(default=False, description="Skip vector indexing step")
 
 
+class FeedbackRequest(BaseModel):
+    """User feedback for a specific response."""
+
+    question: str
+    answer: str
+    is_positive: bool
+    model_key: str
+
+
+class SessionEvalRequest(BaseModel):
+    """Request to finalize session and run evaluation."""
+
+    model_key: str = "llama3.1"
+    feedbacks: List[FeedbackRequest] = []
+
+
 # ── Response schemas ─────────────────────────────────────────────────────────
 
 

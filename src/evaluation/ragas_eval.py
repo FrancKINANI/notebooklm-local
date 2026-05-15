@@ -175,6 +175,49 @@ def evaluate_pipeline(
     return metrics
 
 
+def log_session_to_mlflow(
+    model_key: str,
+    ragas_metrics: Dict[str, float],
+    feedbacks: List[Dict[str, Any]],
+) -> None:
+    """
+    Log combined RAGAS metrics and user feedback to MLflow.
+    """
+    try:
+        from src.pipeline.rag import _load_config
+        config = _load_config()
+        
+        mlflow.set_experiment("localnotebook-rag-sessions")
+
+        with mlflow.start_run(run_name=f"session-{model_key}-{int(time.time())}"):
+            # 1. Log RAGAS metrics
+            for key, value in ragas_metrics.items():
+                if isinstance(value, (int, float)):
+                    mlflow.log_metric(f"ragas_{key}", value)
+
+            # 2. Log User Feedback
+            if feedbacks:
+                pos = sum(1 for f in feedbacks if f.get("is_positive"))
+                total = len(feedbacks)
+                satisfaction = pos / total if total > 0 else 0
+                
+                mlflow.log_metric("user_satisfaction", satisfaction)
+                mlflow.log_metric("user_feedback_count", total)
+                
+                # Log feedback details as artifact
+                with open("metrics/last_session_feedback.json", "w") as f:
+                    json.dump(feedbacks, f, indent=2)
+                mlflow.log_artifact("metrics/last_session_feedback.json")
+
+            # 3. Log Params
+            mlflow.log_param("model_name", model_key)
+            mlflow.log_param("chunk_size", config["ingestion"]["chunk_size"])
+
+        logger.info("Session results logged to MLflow")
+    except Exception as e:
+        logger.warning("Failed to log session to MLflow: %s", e)
+
+
 def _log_to_mlflow(
     metrics: Dict[str, Any],
     config: Dict[str, Any],

@@ -20,16 +20,18 @@ from fastapi.middleware.cors import CORSMiddleware
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from api.schemas import (
+    FeedbackRequest,
     HealthResponse,
     IngestRequest,
     IngestResponse,
     QueryRequest,
     QueryResponse,
+    SessionEvalRequest,
     SourceInfo,
 )
 from src.generation.llm import OllamaLLM
 from src.pipeline.rag import RAGPipeline, build_index, ingest_documents
-from src.evaluation.ragas_eval import evaluate_pipeline
+from src.evaluation.ragas_eval import evaluate_pipeline, log_session_to_mlflow
 
 logging.basicConfig(
     level=logging.INFO,
@@ -125,6 +127,30 @@ async def ingest(request: IngestRequest, background_tasks: BackgroundTasks):
         )
     except Exception as e:
         logger.error("Ingestion failed: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/session_eval")
+async def session_eval(request: SessionEvalRequest, background_tasks: BackgroundTasks):
+    """Process session feedback and trigger RAGAS evaluation."""
+    try:
+        def _run_and_log():
+            # 1. Run RAGAS
+            metrics = evaluate_pipeline(
+                model_key=request.model_key,
+                log_to_mlflow=False # We'll log a custom session run instead
+            )
+            # 2. Log combined session to MLflow
+            log_session_to_mlflow(
+                model_key=request.model_key,
+                ragas_metrics=metrics,
+                feedbacks=[f.dict() for f in request.feedbacks]
+            )
+
+        background_tasks.add_task(_run_and_log)
+        return {"status": "success", "message": "Session evaluation triggered in background."}
+    except Exception as e:
+        logger.error("Session eval failed: %s", e)
         raise HTTPException(status_code=500, detail=str(e))
 
 

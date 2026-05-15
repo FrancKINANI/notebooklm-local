@@ -17,12 +17,12 @@ Le système repose sur un pipeline RAG modulaire décomposé en quatre étapes c
 ## 3. Stack MLOps & Évaluation
 L'originalité du projet réside dans son intégration MLOps pour garantir la qualité des réponses :
 
-*   **Évaluation Automatisée (RAGAS)** : À chaque ingestion, une tâche de fond calcule des métriques "LLM-as-a-judge" :
-    *   *Faithfulness* : La réponse est-elle fidèle aux sources ?
-    *   *Answer Relevancy* : La réponse répond-elle vraiment à la question ?
-    *   *Context Precision/Recall* : La recherche documentaire est-elle efficace ?
-*   **Expérimentation (MLflow)** : Toutes les métriques et paramètres (taille des chunks, top-k) sont loggués dans **MLflow**, permettant une comparaison objective des modèles et des configurations.
-*   **Versionnement (DVC)** : Les données et les bases vectorielles sont versionnées et synchronisées sur un stockage distant (**Google Drive**), assurant la reproductibilité complète des expériences.
+*   **Évaluation Hybride** :
+    *   **Automatique (RAGAS)** : Calcul de métriques "LLM-as-a-judge" (*Faithfulness*, *Relevancy*, etc.) sur un jeu de données de référence.
+    *   **Humaine (Feedback)** : Système de notation (👍/👎) intégré à l'interface, permettant de capturer la satisfaction utilisateur en temps réel.
+*   **Évaluation de Session** : Un mécanisme de clôture de session permet de fusionner les métriques techniques et les retours humains dans un rapport de session consolidé.
+*   **Expérimentation (MLflow)** : Suivi centralisé des expériences. Une expérience dédiée `localnotebook-rag-sessions` compare la performance technique (RAGAS) avec la perception humaine (User Satisfaction) pour chaque modèle.
+*   **Versionnement (DVC)** : Les données sont versionnées et synchronisées sur un stockage distant (**Google Drive**) de manière sécurisée (secrets locaux via `.dvc/config.local`).
 
 ## 4. Conclusion
 LocalNotebook démontre qu'il est possible de construire un système de NLP complexe, performant et auditable sans dépendre d'API cloud tierces. L'utilisation d'outils comme `uv` pour la gestion des dépendances et `Docker` pour l'orchestration souligne une approche logicielle rigoureuse, prête pour un déploiement en production.
