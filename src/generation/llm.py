@@ -10,7 +10,7 @@ from __future__ import annotations
 import logging
 import os
 import time
-from typing import Any, Dict, Generator, Optional
+from typing import Any, Dict, Generator
 
 import ollama
 

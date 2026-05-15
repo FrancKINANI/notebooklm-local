@@ -10,14 +10,14 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
 
 import yaml
 
 from src.embeddings.vectorstore import VectorStore
 from src.generation.llm import OllamaLLM
 from src.ingestion.chunker import chunk_documents
-from src.ingestion.loader import load_directory, load_document
+from src.ingestion.loader import load_directory
 from src.retrieval.reranker import CrossEncoderReranker
 from src.retrieval.retriever import Retriever
 

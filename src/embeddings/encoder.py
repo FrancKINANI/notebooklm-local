@@ -10,7 +10,6 @@ from __future__ import annotations
 import logging
 from typing import List
 
-import numpy as np
 from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
 
 logger = logging.getLogger(__name__)
