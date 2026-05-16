@@ -17,7 +17,8 @@ import ollama
 logger = logging.getLogger(__name__)
 
 # Default RAG system prompt
-RAG_SYSTEM_PROMPT = """You are a helpful research assistant. Answer the user's question based ONLY on the provided context.
+RAG_SYSTEM_PROMPT = """You are a helpful research assistant. \
+Answer the user's question based ONLY on the provided context.
 
 Rules:
 1. Only use information from the context below.
