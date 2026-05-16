@@ -184,8 +184,9 @@ def log_session_to_mlflow(
     """
     try:
         from src.pipeline.rag import _load_config
+
         config = _load_config()
-        
+
         mlflow.set_experiment("localnotebook-rag-sessions")
 
         with mlflow.start_run(run_name=f"session-{model_key}-{int(time.time())}"):
@@ -199,10 +200,10 @@ def log_session_to_mlflow(
                 pos = sum(1 for f in feedbacks if f.get("is_positive"))
                 total = len(feedbacks)
                 satisfaction = pos / total if total > 0 else 0
-                
+
                 mlflow.log_metric("user_satisfaction", satisfaction)
                 mlflow.log_metric("user_feedback_count", total)
-                
+
                 # Log feedback details as artifact
                 with open("metrics/last_session_feedback.json", "w") as f:
                     json.dump(feedbacks, f, indent=2)

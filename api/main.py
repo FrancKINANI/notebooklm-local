@@ -20,7 +20,6 @@ from fastapi.middleware.cors import CORSMiddleware
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from api.schemas import (
-    FeedbackRequest,
     HealthResponse,
     IngestRequest,
     IngestResponse,
@@ -113,12 +112,12 @@ async def ingest(request: IngestRequest, background_tasks: BackgroundTasks):
 
         if not request.skip_index:
             build_index(chunks_path="data/processed/chunks.json")
-            
+
             # Trigger background evaluation
             background_tasks.add_task(
-                evaluate_pipeline, 
-                model_key="llama3.1", # Default to llama3.1 for background eval
-                log_to_mlflow=True
+                evaluate_pipeline,
+                model_key="llama3.1",  # Default to llama3.1 for background eval
+                log_to_mlflow=True,
             )
 
         return IngestResponse(
@@ -134,21 +133,25 @@ async def ingest(request: IngestRequest, background_tasks: BackgroundTasks):
 async def session_eval(request: SessionEvalRequest, background_tasks: BackgroundTasks):
     """Process session feedback and trigger RAGAS evaluation."""
     try:
+
         def _run_and_log():
             # 1. Run RAGAS
             metrics = evaluate_pipeline(
                 model_key=request.model_key,
-                log_to_mlflow=False # We'll log a custom session run instead
+                log_to_mlflow=False,  # We'll log a custom session run instead
             )
             # 2. Log combined session to MLflow
             log_session_to_mlflow(
                 model_key=request.model_key,
                 ragas_metrics=metrics,
-                feedbacks=[f.dict() for f in request.feedbacks]
+                feedbacks=[f.dict() for f in request.feedbacks],
             )
 
         background_tasks.add_task(_run_and_log)
-        return {"status": "success", "message": "Session evaluation triggered in background."}
+        return {
+            "status": "success",
+            "message": "Session evaluation triggered in background.",
+        }
     except Exception as e:
         logger.error("Session eval failed: %s", e)
         raise HTTPException(status_code=500, detail=str(e))

@@ -8,7 +8,6 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
-
 # ── Request schemas ──────────────────────────────────────────────────────────
 
 
@@ -20,7 +19,9 @@ class QueryRequest(BaseModel):
         default="llama3.1",
         description="Model key: 'llama3.1' or 'lfm2.5'",
     )
-    top_k: int = Field(default=5, ge=1, le=20, description="Number of chunks to retrieve")
+    top_k: int = Field(
+        default=5, ge=1, le=20, description="Number of chunks to retrieve"
+    )
 
 
 class IngestRequest(BaseModel):

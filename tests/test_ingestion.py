@@ -4,11 +4,9 @@ Tests for the ingestion module (loader + chunker).
 
 from __future__ import annotations
 
-import tempfile
 from pathlib import Path
 
 import pytest
-from langchain_core.documents import Document
 
 from src.ingestion.chunker import chunk_documents
 from src.ingestion.loader import load_document, load_directory

@@ -11,8 +11,6 @@ from __future__ import annotations
 
 import json
 import os
-import sys
-import time
 from pathlib import Path
 
 import requests
@@ -152,7 +150,9 @@ def send_session_eval(model: str, feedbacks: list) -> bool:
 # ── Sidebar ──────────────────────────────────────────────────────────────────
 
 with st.sidebar:
-    st.markdown('<p class="header-gradient">📚 LocalNotebook</p>', unsafe_allow_html=True)
+    st.markdown(
+        '<p class="header-gradient">📚 LocalNotebook</p>', unsafe_allow_html=True
+    )
     st.caption("Privacy-first RAG • Local LLMs • No cloud")
 
     st.divider()
@@ -195,7 +195,7 @@ with st.sidebar:
         feedbacks = st.session_state.get("feedbacks", [])
         if send_session_eval(model, feedbacks):
             st.success("🎯 Evaluation triggered! Check MLflow in a minute.")
-            st.session_state.feedbacks = [] # Reset feedbacks
+            st.session_state.feedbacks = []  # Reset feedbacks
         else:
             st.error("Failed to trigger evaluation.")
 
@@ -223,17 +223,21 @@ with st.sidebar:
         try:
             with open(metrics_path, "r") as f:
                 eval_metrics = json.load(f)
-            
+
             st.caption(f"Model: {eval_metrics.get('model', 'N/A')}")
-            
+
             cols = st.columns(2)
             with cols[0]:
                 st.metric("Faithfulness", f"{eval_metrics.get('faithfulness', 0):.2f}")
-                st.metric("Context Prec.", f"{eval_metrics.get('context_precision', 0):.2f}")
+                st.metric(
+                    "Context Prec.", f"{eval_metrics.get('context_precision', 0):.2f}"
+                )
             with cols[1]:
                 st.metric("Relevancy", f"{eval_metrics.get('answer_relevancy', 0):.2f}")
-                st.metric("Context Recall", f"{eval_metrics.get('context_recall', 0):.2f}")
-            
+                st.metric(
+                    "Context Recall", f"{eval_metrics.get('context_recall', 0):.2f}"
+                )
+
             st.caption(f"Based on {eval_metrics.get('num_samples', 0)} samples")
         except Exception:
             st.error("Could not load metrics")
@@ -244,7 +248,9 @@ with st.sidebar:
 # ── Main chat interface ─────────────────────────────────────────────────────
 
 st.markdown('<p class="header-gradient">Ask your documents</p>', unsafe_allow_html=True)
-st.caption("Answers are grounded in your ingested sources — fully local, fully private.")
+st.caption(
+    "Answers are grounded in your ingested sources — fully local, fully private."
+)
 
 # Chat history
 if "messages" not in st.session_state:
@@ -256,7 +262,7 @@ if "feedbacks" not in st.session_state:
 for i, msg in enumerate(st.session_state.messages):
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
-        
+
         # Sources and metrics... (keep existing code)
         if msg.get("sources"):
             with st.expander(f"📎 {len(msg['sources'])} source(s)", expanded=False):
@@ -268,28 +274,32 @@ for i, msg in enumerate(st.session_state.messages):
                         f"</div>",
                         unsafe_allow_html=True,
                     )
-        
+
         # Feedback buttons for assistant messages
         if msg["role"] == "assistant" and "latency_ms" in msg.get("metrics", {}):
             col1, col2, _ = st.columns([0.1, 0.1, 0.8])
             with col1:
                 if st.button("👍", key=f"up_{i}"):
                     # Save feedback
-                    st.session_state.feedbacks.append({
-                        "question": st.session_state.messages[i-1]["content"],
-                        "answer": msg["content"],
-                        "is_positive": True,
-                        "model_key": model
-                    })
+                    st.session_state.feedbacks.append(
+                        {
+                            "question": st.session_state.messages[i - 1]["content"],
+                            "answer": msg["content"],
+                            "is_positive": True,
+                            "model_key": model,
+                        }
+                    )
                     st.toast("Thanks for the feedback!", icon="✅")
             with col2:
                 if st.button("👎", key=f"down_{i}"):
-                    st.session_state.feedbacks.append({
-                        "question": st.session_state.messages[i-1]["content"],
-                        "answer": msg["content"],
-                        "is_positive": False,
-                        "model_key": model
-                    })
+                    st.session_state.feedbacks.append(
+                        {
+                            "question": st.session_state.messages[i - 1]["content"],
+                            "answer": msg["content"],
+                            "is_positive": False,
+                            "model_key": model,
+                        }
+                    )
                     st.toast("Feedback recorded.", icon="📝")
 
         if msg.get("metrics"):
