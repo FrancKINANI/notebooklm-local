@@ -160,7 +160,7 @@ with st.sidebar:
     # Model selection
     model = st.selectbox(
         "🤖 Model",
-        options=["llama3.1", "lfm2.5"],
+        options=["llama3:8b", "lfm2.5"],
         format_func=lambda x: {
             "llama3:8b": "llama3:8b (Transformer)",
             "lfm2.5": "LFM 2.5 1.2B (Hybrid SSM)",

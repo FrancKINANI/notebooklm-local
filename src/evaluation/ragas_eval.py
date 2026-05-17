@@ -62,7 +62,7 @@ def load_eval_dataset(eval_path: str = "data/eval") -> List[Dict[str, str]]:
 
 
 def evaluate_pipeline(
-    model_key: str = "llama3.1",
+    model_key: str = "llama3",
     eval_path: str = "data/eval",
     output_path: str = "metrics/ragas_results.json",
     log_to_mlflow: bool = True,
@@ -73,7 +73,7 @@ def evaluate_pipeline(
     Parameters
     ----------
     model_key : str
-        Model to evaluate ("lfm2.5" or "llama3.1").
+        Model to evaluate ("lfm2.5" or "llama3").
     eval_path : str
         Path to evaluation dataset.
     output_path : str

@@ -167,7 +167,7 @@ cp .env.example .env
 
 ```bash
 ollama pull hf.co/LiquidAI/LFM2.5-1.2B-Instruct-GGUF
-ollama pull llama3.1:8b
+ollama pull llama3:8b
 ```
 
 ### 3. Start the stack (Local)
@@ -230,7 +230,7 @@ pytest tests/ -v --cov=src
 Each RAG run logs to MLflow:
 
 **Parameters tracked:**
-- `model_name` (lfm2.5 | llama3.1)
+- `model_name` (lfm2.5 | llama3)
 - `embedding_model`
 - `chunk_size`, `chunk_overlap`
 - `top_k`, `reranking` (bool)

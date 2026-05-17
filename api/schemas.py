@@ -16,8 +16,8 @@ class QueryRequest(BaseModel):
 
     question: str = Field(..., min_length=1, description="The user's question")
     model: str = Field(
-        default="llama3.1",
-        description="Model key: 'llama3.1' or 'lfm2.5'",
+        default="llama3:8b",
+        description="Model key: 'llama3:8b' or 'lfm2.5'",
     )
     top_k: int = Field(
         default=5, ge=1, le=20, description="Number of chunks to retrieve"
@@ -43,7 +43,7 @@ class FeedbackRequest(BaseModel):
 class SessionEvalRequest(BaseModel):
     """Request to finalize session and run evaluation."""
 
-    model_key: str = "llama3.1"
+    model_key: str = "llama3:8b"
     feedbacks: List[FeedbackRequest] = []
 
 

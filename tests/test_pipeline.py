@@ -36,8 +36,8 @@ class TestRAGPipeline:
         }
         mock_models.return_value = {
             "models": {
-                "llama3.1": {
-                    "name": "llama3.1:8b",
+                "llama3": {
+                    "name": "llama3:8b",
                     "provider": "ollama",
                 }
             }
@@ -58,7 +58,7 @@ class TestRAGPipeline:
         mock_llm = mock_llm_cls.return_value
         mock_llm.generate.return_value = {
             "answer": "This is the answer.",
-            "model": "llama3.1:8b",
+            "model": "llama3:8b",
             "latency_ms": 150.0,
             "tokens_per_second": 25.0,
             "eval_count": 10,
@@ -66,12 +66,12 @@ class TestRAGPipeline:
 
         from src.pipeline.rag import RAGPipeline
 
-        pipeline = RAGPipeline(model_key="llama3.1")
+        pipeline = RAGPipeline(model_key="llama3")
         result = pipeline.ask("What is this?")
 
         assert "answer" in result
         assert result["answer"] == "This is the answer."
-        assert result["model_key"] == "llama3.1"
+        assert result["model_key"] == "llama3"
         assert "sources" in result
 
     @patch("src.pipeline.rag._load_models_config")
@@ -84,7 +84,7 @@ class TestRAGPipeline:
             "retrieval": {"top_k": 3},
             "generation": {},
         }
-        mock_models.return_value = {"models": {"llama3.1": {"name": "x"}}}
+        mock_models.return_value = {"models": {"llama3": {"name": "x"}}}
 
         from src.pipeline.rag import RAGPipeline
 

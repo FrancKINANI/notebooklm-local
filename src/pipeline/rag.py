@@ -46,14 +46,14 @@ class RAGPipeline:
     Parameters
     ----------
     model_key : str
-        Key in models.yaml ("lfm2.5" or "llama3.1").
+        Key in models.yaml ("lfm2.5" or "llama3").
     config : dict, optional
         Override config (loaded from config.yaml if None).
     """
 
     def __init__(
         self,
-        model_key: str = "llama3.1",
+        model_key: str = "llama3",
         config: Dict[str, Any] | None = None,
     ):
         self.config = config or _load_config()

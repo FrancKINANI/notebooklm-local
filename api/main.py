@@ -116,7 +116,7 @@ async def ingest(request: IngestRequest, background_tasks: BackgroundTasks):
             # Trigger background evaluation
             background_tasks.add_task(
                 evaluate_pipeline,
-                model_key="llama3.1",  # Default to llama3.1 for background eval
+                model_key="llama3:8b",  # Default to llama3:8b for background eval
                 log_to_mlflow=True,
             )
 
@@ -165,7 +165,7 @@ async def health():
 
     vs_count = 0
     try:
-        pipeline = _get_pipeline("llama3.1")
+        pipeline = _get_pipeline("llama3:8b")
         vs_count = pipeline.vectorstore.count
     except Exception:
         pass

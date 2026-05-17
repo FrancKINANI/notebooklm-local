@@ -3,7 +3,7 @@
 CLI script: Run RAGAS evaluation on the RAG pipeline.
 
 Usage:
-    python scripts/evaluate.py --model llama3.1
+    python scripts/evaluate.py --model llama3
     python scripts/evaluate.py --model lfm2.5 --no-mlflow
 """
 
@@ -35,9 +35,9 @@ def main():
     parser.add_argument(
         "--model",
         type=str,
-        default="llama3.1",
-        choices=["llama3.1", "lfm2.5"],
-        help="Model to evaluate (default: llama3.1)",
+        default="llama3",
+        choices=["llama3", "lfm2.5"],
+        help="Model to evaluate (default: llama3)",
     )
     parser.add_argument(
         "--eval-path",

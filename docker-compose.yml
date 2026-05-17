@@ -10,6 +10,8 @@ services:
       - ./chroma_db:/app/chroma_db
     environment:
       - OLLAMA_BASE_URL=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       - mlflow
 

@@ -37,7 +37,7 @@ class OllamaLLM:
     Parameters
     ----------
     model : str
-        Ollama model name (e.g. "llama3.1:8b").
+        Ollama model name (e.g. "llama3:8b").
     base_url : str
         Ollama API base URL.
     temperature : float
@@ -52,7 +52,7 @@ class OllamaLLM:
 
     def __init__(
         self,
-        model: str = "llama3.1:8b",
+        model: str = "llama3:8b",
         base_url: str | None = None,
         temperature: float = 0.1,
         max_tokens: int = 512,
